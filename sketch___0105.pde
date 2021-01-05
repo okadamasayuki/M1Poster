@@ -12,6 +12,8 @@ int dot_radius=15;
 int dot_x;
 int dot_y;
 
+int kaisu;
+
 void setup() {
   fullScreen();
   img_A = loadImage("A.png");  // 140 × 145
@@ -33,21 +35,29 @@ void setup() {
   
   dot_x = int(random(dot_radius,width/2-dot_radius));
   dot_y = int(random(dot_radius,height-dot_radius));
+  kaisu=millis() / 250;
 }
  
 void draw() {
   background(255);
   image(imgs[random_r], 3*width/4-145/2, height/2-140/2);
   image(imgs[random_l], width/4-145/2, height/2-140/2);
-  ellipse(dot_x,dot_y,dot_radius,dot_radius);
-  fill(255,0,0);
-  noStroke();
+  //ellipse(dot_x,dot_y,dot_radius,dot_radius);
+  //fill(255,0,0);
+  //noStroke();
   
-  if( millis()%250 == 0 ){ // 1/1000
+  println(millis());
+  
+  
+  if( millis()> (kaisu+1)*250 ){ // 1/1000
     random_r = int(random(5));
     random_l = int(random(5));
       print(random_r);
       println(random_l);
+    dot_x = int(random(dot_radius,width/2-dot_radius));
+    dot_y = int(random(dot_radius,height-dot_radius));
+    kaisu=kaisu+1;
+    println("==========================");
   }
   
 }
