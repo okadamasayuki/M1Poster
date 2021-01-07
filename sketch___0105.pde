@@ -13,7 +13,7 @@ int dot_radius=15;
 int dot_x;
 int dot_y;
 
-int i=0;
+int i=1;
 
 int [] dot_color = {0,0,0,255};
 int dot_color_index;
@@ -45,22 +45,28 @@ void setup() {
   
   random_r = int(random(5));
   random_l = int(random(5));
-  file.println(1+", "+random_l+","+random_r);
+  file.print(i+", "+random_l+","+random_r);
   print(random_r);
   println(random_l);
   A_K[0]=random_r;
   
   dot_color_index = int(random(4));
+  if(dot_color_index == 3){
+    file.println(","+" red");
+  }
   dot_x = int(random(dot_radius,width/2-dot_radius));
   dot_y = int(random(dot_radius,height-dot_radius));
+  dot_x = 7*width/16+70;
+  dot_y = height/2;
+  //dot_color_index=0;
   start_time=millis();
 }
  
 void draw() {
   background(0);
   if( millis() > start_time+initial_nothing_display_sec*1000 ){
-      image(imgs[random_r], 3*width/4-145/2, height/2-140/2);
-      image(imgs[random_l], width/4-145/2, height/2-140/2);
+      image(imgs[random_r], 9*width/16-145/2, height/2-140/2);
+      image(imgs[random_l], 7*width/16-145/2, height/2-140/2);
       ellipse(dot_x,dot_y,dot_radius,dot_radius);
       fill(dot_color[dot_color_index],0,0);
       noStroke();
@@ -80,12 +86,17 @@ void draw() {
               AKcounter++;
             }
             A_K[0]=random_r;
-            file.println(1+i+", "+random_l+","+random_r);
+            file.print(1+i+", "+random_l+","+random_r);
               print(random_r);
               println(random_l);
             dot_color_index = int(random(4));
+            if(dot_color_index == 3){
+              file.println(","+" red");
+            }
             dot_x = int(random(dot_radius,width/2-dot_radius));
             dot_y = int(random(dot_radius,height-dot_radius));
+            dot_x = 7*width/16+70;
+            dot_y = height/2;
             i=i+1;
             if(i==100){
               file.println();
