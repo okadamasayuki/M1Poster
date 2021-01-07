@@ -23,6 +23,9 @@ int initial_nothing_display_sec=2;
 
 PrintWriter file;
 
+int [] A_K= new int [2];
+int AKcounter=0;
+
 void setup() {
   file = createWriter(month()+"_"+day()+"_"+hour()+"_"+minute()+"_"+second());
   fullScreen();
@@ -45,6 +48,7 @@ void setup() {
   file.println(1+","+random_r+", "+random_l);
   print(random_r);
   println(random_l);
+  A_K[0]=random_r;
   
   dot_color_index = int(random(4));
   dot_x = int(random(dot_radius,width/2-dot_radius));
@@ -71,6 +75,11 @@ void draw() {
         if( millis() - (start_time+initial_nothing_display_sec*1000) > (i+1)*280 ){
             random_r = int(random(5));
             random_l = int(random(5));
+            A_K[1]=random_r;
+            if(A_K[0]==0 && A_K[1]==3){
+              AKcounter++;
+            }
+            A_K[0]=random_r;
             file.println(i+1+","+random_r+", "+random_l);
               print(random_r);
               println(random_l);
@@ -78,7 +87,9 @@ void draw() {
             dot_x = int(random(dot_radius,width/2-dot_radius));
             dot_y = int(random(dot_radius,height-dot_radius));
             i=i+1;
-            if(i==10){
+            if(i==100){
+              file.println();
+              file.println("A to K count: "+AKcounter);
               file.flush();
               file.close();
               exit();
