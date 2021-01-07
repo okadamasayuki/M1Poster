@@ -80,7 +80,7 @@ void draw() {
               AKcounter++;
             }
             A_K[0]=random_r;
-            file.println(1+", "+random_l+","+random_r);
+            file.println(1+i+", "+random_l+","+random_r);
               print(random_r);
               println(random_l);
             dot_color_index = int(random(4));
