@@ -45,7 +45,7 @@ void setup() {
   
   random_r = int(random(5));
   random_l = int(random(5));
-  file.println(1+","+random_r+", "+random_l);
+  file.println(1+", "+random_l+","+random_r);
   print(random_r);
   println(random_l);
   A_K[0]=random_r;
@@ -80,7 +80,7 @@ void draw() {
               AKcounter++;
             }
             A_K[0]=random_r;
-            file.println(i+1+","+random_r+", "+random_l);
+            file.println(1+", "+random_l+","+random_r);
               print(random_r);
               println(random_l);
             dot_color_index = int(random(4));
